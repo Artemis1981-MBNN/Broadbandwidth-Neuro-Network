@@ -1,0 +1,8 @@
+name: bbnn-env
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - pip
+  - pip:
+      - your-required-pypi-package
