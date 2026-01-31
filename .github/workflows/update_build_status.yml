@@ -63,7 +63,17 @@ jobs:
                   for await (const cr of checkRuns.data.check_runs) {
                     if (cr.name == 'Build' && cr.conclusion != "action_required") {
                       // text contains parameters to make request in JSON.
-                      const params = JSON.parse(cr.output.text)
+                      let params
+                      try {
+                        if (!cr.output || !cr.output.text) {
+                          console.log(`    Check run ${cr.id}: missing output.text, skipping`)
+                          continue
+                        }
+                        params = JSON.parse(cr.output.text)
+                      } catch (error) {
+                        console.error(`    Check run ${cr.id}: failed to parse output.text as JSON - ${error.message}`)
+                        continue
+                      }
 
                       // Get the workflow run in the forked repository
                       let run
