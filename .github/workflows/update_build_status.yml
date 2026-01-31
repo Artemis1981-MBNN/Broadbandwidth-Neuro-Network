@@ -66,13 +66,12 @@ jobs:
                       let params
                       try {
                         if (!cr.output || !cr.output.text) {
-                          console.log('    Check run ' + cr.id + ': missing output.text, skipping')
+                          console.log(`    Check run ${cr.id}: missing output.text, skipping`)
                           continue
                         }
                         params = JSON.parse(cr.output.text)
                       } catch (error) {
-                        console.error('    Check run ' + cr.id + ': failed to parse output.text as JSON')
-                        console.error(error)
+                        console.error(`    Check run ${cr.id}: failed to parse output.text as JSON - ${error.message}`)
                         continue
                       }
 
