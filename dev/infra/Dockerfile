@@ -83,9 +83,7 @@ RUN Rscript -e "install.packages(c('devtools', 'knitr', 'markdown',  \
     Rscript -e "devtools::install_version('preferably', version='0.4', repos='https://cloud.r-project.org')"
 
 # See more in SPARK-39735
-# Initialize R_LIBS_SITE first to avoid undefined variable warning
-ENV R_LIBS_SITE=/usr/local/lib/R/site-library
-ENV R_LIBS_SITE="/usr/local/lib/R/site-library:${R_LIBS_SITE}:/usr/lib/R/library"
+ENV R_LIBS_SITE="/usr/local/lib/R/site-library:/usr/lib/R/library"
 
 
 RUN add-apt-repository ppa:pypy/ppa
